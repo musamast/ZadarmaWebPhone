@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="hidden" id="webrtcKey" value="{{ webrtcKey }}" />
+    <input type="hidden" id="login" value="{{ login }}" />
+
+    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-lib.js?v=23"></script>
+    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-fn.js?v=23"></script>
+    <script>
+      if (window.addEventListener) {
+        window.addEventListener(
+          "load",
+          function () {
+            zadarmaWidgetFn(
+              document.querySelector("#webrtcKey").value,
+              document.querySelector("#login").value,
+              "square" /*square|rounded*/,
+              "en" /*ru, en, es, fr, de, pl, ua*/,
+              true,
+              "{right:'10px',bottom:'5px'}"
+            );
+          },
+          false
+        );
+      } else if (window.attachEvent) {
+        window.attachEvent("onload", function () {
+          zadarmaWidgetFn(
+            document.querySelector("#webrtcKey").value,
+            document.querySelector("#login").value,
+            "square" /*square|rounded*/,
+            "en" /*ru, en, es, fr, de, pl, ua*/,
+            true,
+            "{right:'10px',bottom:'5px'}"
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
