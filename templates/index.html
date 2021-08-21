@@ -4,14 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style.css') }}"
+    />
+   
+    <title>Home</title>
+
+   <body>
     <input type="hidden" id="webrtcKey" value="{{ webrtcKey }}" />
     <input type="hidden" id="login" value="{{ login }}" />
 
-    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-lib.js?v=23"></script>
-    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-fn.js?v=23"></script>
+
+    <div class="container login-container">
+      <div class="col-md-7 login-form-1">
+        <h3>Zadarma Web Phone</h3>
+       
+          <div class="form-group">
+            <div class="userInfo">
+              <h6>SIP ID- {{session["sip"]}}</h6>
+            <h6>Name-{{userInfo.name}} </h6>
+            <h6>Caller ID- {{userInfo.caller_id}} </h6>
+          </div>
+          </div>
+    
+          <div class="form-group"id="webPhone">
+            
+          </div>
+          <form action="{{ url_for('logout') }}">
+            <div class="form-group">
+              <input type="submit" value="Log out" class="btnSubmit"/>
+            </div>
+           
+        </form>
+          
+
+
+        
+   
+      </div>
+      
+    </div>
+
+   
+
+    
+    <!-- <div class="userInfo" style="text-align:left;position: relative;">
+      <h2>User Details</h2>
+      <h4>SIP ID- {{session["sip"]}}</h4>
+      <h4>Name-{{userInfo["name"]}} </h4>
+      <h4>Caller ID- {{userInfo.caller_id}} </h4>
+    </div> -->
+    
     <script>
       if (window.addEventListener) {
         window.addEventListener(
@@ -28,6 +80,8 @@
           },
           false
         );
+       
+        
       } else if (window.attachEvent) {
         window.attachEvent("onload", function () {
           zadarmaWidgetFn(
@@ -39,7 +93,19 @@
             "{right:'10px',bottom:'5px'}"
           );
         });
+       
       }
-    </script>
+      window.addEventListener("load", function(){
+        $("#zdrmWPhI").removeClass("zdrm-fixed");
+        $($("#zdrmWPhI").detach()).appendTo("#webPhone");
+  
+});
+     
+    </script> 
+    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-lib.js?v=23"></script>
+    <script src="https://my.zadarma.com/webphoneWebRTCWidget/v8/js/loader-phone-fn.js?v=23"></script>
+   
   </body>
+  
 </html>
+<!-- <h1>hello world</h1> -->

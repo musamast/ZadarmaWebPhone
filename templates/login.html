@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/notify.css') }}"
+    />
+    <script src="{{ url_for('static', filename = 'js/notify.js') }}"></script>
+
+    <title>Login</title>
+  </head>
+  <body>
+    {% if session["notify"] %} <input type="hidden" id="message"
+    value="{{session["notify"]["message"]}}" /> <input type="hidden"
+    id="category" value="{{ session["notify"]["category"]}}" />
+    <script>
+      var options = {
+        message: document.querySelector("#message").value,
+        color: document.querySelector("#category").value,
+        timeout: 6000,
+      };
+      getName();
+      notify(options);
+    </script>
+    {% endif %}
+    <div class="container login-container">
+      <div class="col-md-7 login-form-1">
+        <h3>Zadarma Web Phone Login</h3>
+        <form method="POST">
+          <div class="form-group">
+            <input
+              type="text"
+              id="SIPLogin"
+              class="form-control"
+              placeholder="SIP Login"
+              name="sip"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              id="inputPassword"
+              class="form-control"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btnSubmit" value="Login" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /container -->
+  </body>
+</html>
